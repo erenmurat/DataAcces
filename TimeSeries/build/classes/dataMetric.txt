@@ -1,0 +1,4 @@
+2018-09-03T16:51:32 url1 user1 session1 17
+2018-09-03T16:51:32 url1 user2 session2 1
+2018-09-03T16:51:32 url2 user1 session3 18
+2018-09-03T16:51:32 url2 user1 session4 12
