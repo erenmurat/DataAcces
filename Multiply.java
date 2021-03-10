@@ -4,90 +4,75 @@ import java.util.ArrayList;
 import java.lang.Math; 
 
 
-
+/* Multiply by n length with n lentgh 2 number*/
 public class Multiply {
-	
-	
-	
-	
-	
-	
-	///////////
-	
- 
+	private static String multiply(String number1, String number2) {
+    String total = "0";
+    List<String> subTotals = new ArrayList<>();
+    int zeroCount = 0;
+    for (int i = number2.length() - 1; i >= 0; i--) {
+        String subTotal = multiplyHelper(number1, "" + number2.charAt(i));
+        for (int j = 0; j < zeroCount; j++) {
+            subTotal += "0";
+        }
+        zeroCount++;
+        subTotals.add(subTotal);
+    }
+    for (String subTotal : subTotals) {
+        total = addHelper(subTotal, total);
+    }
+    return total;
+}
 
+private static String addHelper(String number1, String number2) {
+    String total = "";
+    int difference = number1.length() - number2.length();
+    if (difference > 0) {
+        for (int i = 0; i < difference; i++) {
+            number2 = "0" + number2;
+        }
+    } else {
+        for (int i = 0; i < difference; i++) {
+            number1 = "0" + number1;
+        }
+    }
+    String additional = "0";
+    for (int i = number1.length() - 1; i >= 0; i--) {
+        int num1 = new Integer("" + number1.charAt(i));
+        int num2 = new Integer("" + number2.charAt(i));
+        String subTotal = "" + (num1 + num2 + new Integer(additional));
+        if (i == 0) {
+            total = subTotal + total;
+        } else if (subTotal.length() == 1) {
+            total = subTotal + total;
+            additional = "0";
+        } else {
+            total = subTotal.charAt(1) + total;
+            additional = "" + subTotal.charAt(0);
+        }
+    }
+    return total;
+}
+
+private static String multiplyHelper(String number1, String number2) {
+    String total = "";
+    String additional = "0";
+    int num2 = new Integer(number2);
+    for (int i = number1.length() - 1; i >= 0; i--) {
+        int num1 = new Integer("" + number1.charAt(i));
+        String multiplication = "" + (num1 * num2 + new Integer(additional));
+        if(i == 0) {
+            total = multiplication + total;
+        } else if (multiplication.length() == 1) {
+            total = multiplication + total;
+            additional = "0";
+        } else {
+            total = multiplication.charAt(1) + total;
+            additional = "" + multiplication.charAt(0);
+        }
+    }
+    return total;
+ }
+}
 
 	 
-		public static void main(String[] args) {
-
-//			Formula formula = new Formula() {
-//				@Override
-//				public double calculate(int a) {
-//					return sqrt(a * 100);
-//				}
-//
-//			};
-
-			// System.out.println(formula.calculate(25));
-			// System.out.println(formula.sqrt(16));
-
-			///////////////////////////////////
-			String sayi1 = "125";
-			String sayi2 = "125963";
-
-			char i[] = sayi1.toCharArray();
-			char j[] = sayi2.toCharArray();
-
-			ArrayList<Integer> carpim = new ArrayList<Integer>(25);
-			System.out.println(Math.multiplyExact(4, 2));
-
-			int x = 0;
-			int s1 = 0;
-			int s2 = 0;
-			int carp = 0;
-			int tasi = 0;
-			
-			int carpan []=   { 1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
-			int y =0;
-			for (int j2 = j.length - 1; j2 >= 0; j2--) {
-			 	tasi = 0;
-				x = 0;
-			 	for (int k = i.length - 1; k >= 0; k--) {
-			 		s1 = Character.getNumericValue(j[j2]);
-					s2 = Character.getNumericValue(i[k]);
-					if (k == 0) {
-						carp = Math.multiplyExact(s1, s2) + tasi;
-
-					} else {
-						carp = (Math.multiplyExact(s1, s2) + carp) % 10; // elide tutulan
-			 			tasi = (int) (tasi + Math.floor(Double.valueOf((Math.multiplyExact(s1, s2)) / 10)));
-					}
-	                System.out.println(carp +"  *  "+ carpan[x] + "  ** index "+ x);
-					carpim.add(x, carp* carpan[x+y] );
-					x++;
-					carp = 0;
-					
-				}
-			 		y++;
-			}
-			
-			int q = 0;
-			int toplam[]= new int[carpim.size()];
-			for (Integer integer : carpim) {
-				q= q + integer;
-			 	 
-			}
-			System.out.println("result:"+ q);
-		 }
-		
-		
-
-	}
-
-	
-	/////////
-	
-	
-	
-
- 
