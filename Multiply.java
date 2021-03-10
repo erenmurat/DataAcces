@@ -1,8 +1,7 @@
 package com.intfc;
 
 import java.util.ArrayList;
-import java.lang.Math; 
-
+import java.util.List;
 
 /* Multiply by n length with n lentgh 2 number*/
 public class Multiply {
